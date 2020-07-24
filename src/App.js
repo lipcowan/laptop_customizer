@@ -3,18 +3,24 @@ import React, { Component } from 'react';
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
 import slugify from 'slugify';
-
 import './App.css';
+import Header from './Header';
+
 
 // This object will allow us to
 // easily convert numbers into US dollar values
+
+//considering moving this to cart component 
 const USCurrencyFormat = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD'
 });
 
+// App class should remain only
+
 class App extends Component {
   state = {
+    header: 'ELF Computing | Laptops',
     selected: {
       Processor: {
         name: '17th Generation Intel Core HB (7 Core with donut spare)',
@@ -97,9 +103,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header>
-          <h1>ELF Computing | Laptops</h1>
-        </header>
+        <Header headerTitle={this.state.header}/>
         <main>
           <form className="main__form">
             <h2>Customize your laptop</h2>
