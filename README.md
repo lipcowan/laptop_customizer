@@ -6,17 +6,17 @@ _Refactor Exercise for React course_
 ### Header
 - I used state to pass through the header text ... just for fun/practice
 
-## FormOptions Folder
+### FormOptions Folder
 
-### FormOptions
+#### FormOptions
 - listing the various options and passing through props
 
 #### Feature
 - template for feature, mapping through the FEATURES in the index
 
-## Cart Folder
+### Cart Folder
 
-### Cart
+#### Cart
 - displaying total and subtotal
 
 #### Subtotal
