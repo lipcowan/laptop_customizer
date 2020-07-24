@@ -1,24 +1,10 @@
 import React, { Component } from 'react';
-
-// Normalizes string as a slug - a string that is safe to use
-// in both URLs and html attributes
-import slugify from 'slugify';
 import './App.css';
 import Header from './Header';
 import FormOptions from './FormOptions/FormOptions';
 import Cart from './Cart/Cart';
 
-
-// This object will allow us to
-// easily convert numbers into US dollar values
-
-//considering moving this to cart component 
-const USCurrencyFormat = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
-});
-
-// App class should remain only
+// App class should remain only ------------------------------------------------
 
 class App extends Component {
   state = {
@@ -43,6 +29,14 @@ class App extends Component {
     }
   };
 
+  // This object will allow us to
+  // easily convert numbers into US dollar values
+  //leaving here since it's referenced in FormOptions and Cart
+  USCurrencyFormat = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  });
+
   updateFeature = (feature, newValue) => {
     const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
@@ -52,18 +46,6 @@ class App extends Component {
   };
 
   render() {
-  // ------------------------- move to Cart/Subtotal? -------------------------------------
-
-    
-
-  // -------------------------- move to Cart/Total? -----------------------
-
-    const total = Object.keys(this.state.selected).reduce(
-      (acc, curr) => acc + this.state.selected[curr].cost,
-      0
-    );
-
-  // ---------------------------- Keep in App? -----------------------------
 
     return (
       <div className="App">
@@ -71,19 +53,18 @@ class App extends Component {
         <main>
             <FormOptions 
             features={this.props.features} 
-            currencyFormatter={USCurrencyFormat}
+            currencyFormatter={this.USCurrencyFormat}
             updateFeature={this.updateFeature}
           />
 
           <Cart 
-            total={total}
-            currencyFormatter={USCurrencyFormat}
+            currencyFormatter={this.USCurrencyFormat}
             selected={this.state.selected}
           />
         </main>
       </div>
     );
-  } // ------------------- End of Render() -------------------------------------
+  }
 
   // --------------------- End of App ------------------------------------------
 }
