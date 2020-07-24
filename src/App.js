@@ -6,6 +6,7 @@ import slugify from 'slugify';
 import './App.css';
 import Header from './Header';
 import FormOptions from './FormOptions/FormOptions';
+import Cart from './Cart/Cart';
 
 
 // This object will allow us to
@@ -53,20 +54,7 @@ class App extends Component {
   render() {
   // ------------------------- move to Cart/Subtotal? -------------------------------------
 
-    const summary = Object.keys(this.state.selected).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      const selectedOption = this.state.selected[feature];
-
-      return (
-        <div className="summary__option" key={featureHash}>
-          <div className="summary__option__label">{feature} </div>
-          <div className="summary__option__value">{selectedOption.name}</div>
-          <div className="summary__option__cost">
-            {USCurrencyFormat.format(selectedOption.cost)}
-          </div>
-        </div>
-      );
-    });
+    
 
   // -------------------------- move to Cart/Total? -----------------------
 
@@ -86,16 +74,12 @@ class App extends Component {
             currencyFormatter={USCurrencyFormat}
             updateFeature={this.updateFeature}
           />
-          <section className="main__summary">
-            <h2>Your cart</h2>
-            {summary}
-            <div className="summary__total">
-              <div className="summary__total__label">Total</div>
-              <div className="summary__total__value">
-                {USCurrencyFormat.format(total)}
-              </div>
-            </div>
-          </section>
+
+          <Cart 
+            total={total}
+            currencyFormatter={USCurrencyFormat}
+            selected={this.state.selected}
+          />
         </main>
       </div>
     );
