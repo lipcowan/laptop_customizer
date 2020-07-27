@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
+// Do we want to move these into the FormOptions Folder as seperate components? 
+// OR do we want to put these in a STORE?
+
 const FEATURES = {
   Processor: [
     {
